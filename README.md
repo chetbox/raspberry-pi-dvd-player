@@ -14,7 +14,7 @@ Features:
 
 You will need:
 - A micro SD card
-- A Raspberry Pi
+- A Raspberry Pi (I've tested on a Pi Zero and Pi Zero W)
 - A USB DVD drive
 
 1. Install [Rasbian Lite](https://www.raspberrypi.org/downloads/raspbian/) on the micro SD card
