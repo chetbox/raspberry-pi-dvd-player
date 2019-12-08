@@ -1,0 +1,5 @@
+[Unit]
+Description=Turn on connected screen and set input
+
+[Service]
+ExecStart=bash -c "for cmd in 'on 0' 'as' ; do echo $cmd | cec-client -s -d 1 ; done"

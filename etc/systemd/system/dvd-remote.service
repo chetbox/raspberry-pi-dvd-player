@@ -1,0 +1,7 @@
+[Service]
+Type=simple
+User=pi
+ExecStart=python3 /home/pi/vlc_media_buttons.py --password mypassword /dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd
+
+[Install]
+WantedBy=multi-user.target

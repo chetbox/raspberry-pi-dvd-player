@@ -1,0 +1,11 @@
+[Unit]
+Description=DVD Player background image
+
+[Service]
+Type=simple
+ExecStart=fim -T 1 -a -q /usr/share/backgrounds/dvd.jpg
+StandardInput=tty
+StandardOutput=tty
+
+[Install]
+WantedBy=multi-user.target
