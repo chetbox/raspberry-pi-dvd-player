@@ -1,5 +1,8 @@
 # raspberry-pi-dvd-player
+
 Use a Raspberry Pi as a DVD player
+
+<img src="https://user-images.githubusercontent.com/292958/70397346-646b4180-1a09-11ea-8db0-77495daece20.jpg" height="300" /> <img src="https://user-images.githubusercontent.com/292958/70397347-646b4180-1a09-11ea-9add-0aa2a3a5bebf.jpg" height="300" />
 
 Features:
 - Automatically play a DVD as soon as it is inserted
