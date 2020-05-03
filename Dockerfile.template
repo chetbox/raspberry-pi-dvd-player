@@ -1,10 +1,17 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%
 
+# Create pi user
+RUN useradd pi
+RUN usermod -a -G users pi
+RUN usermod -a -G video pi
+RUN usermod -a -G audio pi
+
 # Play DVD when inserted
 ENV UDEV=on
 RUN install_packages systemd udev vlc
 COPY etc/systemd/system/dvd-play.service /etc/systemd/system/
 COPY etc/udev/rules.d/90-dvd.rules /etc/udev/rules.d/
+CMD tail -f /dev/null
 
 # Automatically turn on screen when playing
 RUN install_packages cec-utils
