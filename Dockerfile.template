@@ -1,6 +1,7 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%
 
 # Play DVD when inserted
+ENV UDEV=on
 RUN install_packages systemd udev vlc
 COPY etc/systemd/system/dvd-play.service /etc/systemd/system/
 COPY etc/udev/rules.d/90-dvd.rules /etc/udev/rules.d/
