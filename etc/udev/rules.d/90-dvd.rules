@@ -1,0 +1,2 @@
+ACTION=="change", SUBSYSTEM=="block", KERNEL=="sr0", ENV{DISK_EJECT_REQUEST}=="?*", RUN+="/bin/systemctl stop dvd-play"
+ACTION=="change", SUBSYSTEM=="block", KERNEL=="sr0", ENV{ID_CDROM_MEDIA_DVD}=="?*", TAG+="systemd", ENV{SYSTEMD_WANTS}="dvd-play.service"

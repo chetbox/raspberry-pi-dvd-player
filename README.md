@@ -43,7 +43,7 @@ You will need:
 1. Install Flirc
 
 ```shell
-curl apt.flirc.tv/install.sh | sudo bash 
+curl apt.flirc.tv/install.sh | sudo bash
 ```
 
 2. Assign the keys on your remote to regular keys. Do not use the `play/pause`, `fastforward`, etc. commands.
@@ -54,7 +54,7 @@ flirc_util record r # Press rewind
 flirc_util record f # Press fast forward
 flirc_util record s # Press stop
 ```
- 
+
 3. Install Python dependencies:
 
 ```
@@ -69,25 +69,25 @@ pip3 install evdev
 6. Enable the service:
 
 ```shell
-sudo systemctl enable dvd-remote 
+sudo systemctl enable dvd-remote
 ```
 
  ## Automatically turn on the screen when a DVD is inserted
- 
+
  (HDMI-CEC compatible screen only.)
- 
+
  1. To prevent the screen turning on when the Pi boots, add the following to `/boot/config.txt`:
- 
+
  ```
  hdmi_ignore_cec_init=1
  ```
- 
+
  2. Install `cec-utils`:
- 
+
  ```shell
  sudo apt-get install -y cec-utils
  ```
- 
+
  3. Copy [`turn-on-screen.service`](/etc/systemd/system/turn-on-screen.service) to `/etc/systemd/system/`.
 
 ## DVD background and quiet boot
@@ -115,3 +115,12 @@ loglevel=3 quiet logo.nologo vt.global_cursor_default=0
 ```
 
 6. To hide boot output while the Raspberry Pi boots change `console=tty1` to `console=tty3` in `/boot/cmdline.txt`.
+
+## Setup with Balena Cloud
+
+- Create a new Balena Cloud project called `dvd-player`
+- Add a device, install Baleno OS to an SD card and start up the Raspberry Pi.
+- In "Fleet Configuration" add a "CUSTOM CONFIGURATION VARIABLE" called `ALENA_HOST_CONFIG_hdmi_ignore_cec_init` with a value of `1`.
+- In "Devices" select your device, then select "Device Configuration". Add a "CUSTOME CONFIGURATION VARIABLE" called `BALENA_HOST_CONFIG_decode_MPG2` with a value of your MPEG2 decoder key that was emailed to you.
+- Run `balena login` if you haven't done this already.
+- Run `balena push dvd-player` in this folder.

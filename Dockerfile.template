@@ -1,0 +1,29 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%
+
+# Play DVD when inserted
+RUN echo "decode_MPG2=${MPEG2_KEY}" >> /boot/config.txt
+RUN install_packages systemd udev vlc
+COPY etc/systemd/system/dvd-play.service /etc/systemd/system/
+COPY etc/udev/rules.d/90-dvd.rules /etc/udev/rules.d/
+
+# Automatically turn on screen when playing
+RUN echo "hdmi_ignore_cec_init=1" >> /boot/config.txt
+RUN install_packages cec-utils
+COPY etc/systemd/system/turn-on-screen.service /etc/systemd/system/
+
+# DVD background
+COPY usr/share/backgrounds/dvd.jpg /usr/share/backgrounds/
+RUN install_packages fim
+COPY etc/systemd/system/dvd-background.service /etc/systemd/system/
+RUN systemctl enable dvd-background
+
+# Flirc remote
+RUN install_packages libreadline6
+RUN curl apt.flirc.tv/install.sh | sudo bash
+COPY home/pi/.flirc/*.fcfg /home/pi/.flirc/
+RUN flirc_util loadconfig /home/pi/.flirc/panasonic_remote.fcfg
+RUN install_packages python3-pip
+RUN pip3 install evdev
+COPY home/pi/vlc_media_buttons.py /home/pi/
+COPY etc/systemd/system/dvd-remote.service /etc/systemd/system/
+RUN systemctl enable dvd-remote
