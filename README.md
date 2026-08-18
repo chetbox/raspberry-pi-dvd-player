@@ -1,3 +1,5 @@
+
+
 # raspberry-pi-dvd-player
 
 Use a Raspberry Pi as a DVD player
@@ -59,7 +61,7 @@ flirc_util record s # Press stop
 
 ```
 sudo apt-get install -y python3-pip
-pip3 install evdev
+pip3 install evdev requests
 ```
 
 4. Copy [`vlc_media_buttons.py`](home/pi/vlc_media_buttons.py) to `/home/pi`.
